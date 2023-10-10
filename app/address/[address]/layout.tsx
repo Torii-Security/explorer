@@ -399,7 +399,8 @@ export type MoreTabs =
     | 'anchor-program'
     | 'anchor-account'
     | 'entries'
-    | 'concurrent-merkle-tree';
+    | 'concurrent-merkle-tree'
+    | 'Solkeeper';
 
 function MoreSection({ children, tabs }: { children: React.ReactNode; tabs: (JSX.Element | null)[] }) {
     return (
@@ -481,6 +482,12 @@ function getTabs(pubkey: PublicKey, account: Account): TabComponent[] {
     if (account.owner.toBase58() === ACCOUNT_COMPRESSION_ID.toBase58()) {
         tabs.push(TABS_LOOKUP['spl-account-compression'][0]);
     }
+
+    tabs.push({
+        path: "solkeeper",
+        slug: "Solkeeper",
+        title: "SolKeeper",
+    });
 
     return tabs.map(tab => {
         return {
